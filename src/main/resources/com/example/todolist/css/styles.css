@@ -5,6 +5,10 @@
     -fx-text-fill: white;
 }
 
+.VBox{
+    -fx-background-color: #001f48;
+}
+
 .label {
     -fx-text-fill: white;
     -fx-font-family: Alef;
@@ -76,4 +80,34 @@
     -fx-border-width: 1 0 0 0;
     -fx-font-size: 12pt;
     -fx-padding: 5 3 8 3;
+}
+
+
+
+.list-view {
+    -fx-control-inner-background: #020024;
+}
+
+.list-view .list-cell:selected {
+    -fx-background-color: #030141; /* Cambia #yourSelectedColor al color que desees para el elemento seleccionado */
+}
+
+
+.combo-box
+{
+    -fx-background-color : #141124;
+    -fx-border-color:  #515658;
+    -fx-border-radius: 30;
+}
+.combo-box:hover
+{
+    -fx-background-color : #141124;
+    -fx-border-color:  #FFFF;
+    -fx-border-radius: 30;
+}
+.combo-box:pressed
+{
+    -fx-background-color : #141124;
+    -fx-border-color:  #FFFF;
+    -fx-border-radius: 30;
 }

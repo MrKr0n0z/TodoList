@@ -1,24 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.control.cell.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<VBox alignment="CENTER" spacing="20.0" stylesheets="@css/styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.todolist.HelloController">
+<AnchorPane stylesheets="@css/styles.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.todolist.HelloController">
 
 
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
    <children>
-   
-   
-       <Label styleClass="title" text="ToDo List" />
-   
-   
-       <GridPane alignment="CENTER" hgap="15" vgap="15">
+
+
+       <Label layoutX="232.0" layoutY="34.0" styleClass="title" text="ToDo List">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="12.0" />
+         </font></Label>
+      <AnchorPane fx:id="anPaneInicio" layoutX="38.0" layoutY="148.0" prefHeight="480.0" prefWidth="701.0">
+         <children>
+            <Button layoutX="297.0" layoutY="63.0" mnemonicParsing="false" onAction="#onAñadirTarea" text="Añadir tarea" />
+            <Button layoutX="292.0" layoutY="206.0" mnemonicParsing="false" onAction="#onAddEtiqueta" text="Añadir etiqueta" />
+            <Button layoutX="292.0" layoutY="339.0" mnemonicParsing="false" onAction="#onActualizar" text="Actualizar tarea" />
+         </children>
+      </AnchorPane>
+
+
+       <GridPane fx:id="gpTarea" alignment="CENTER" hgap="15" layoutX="36.0" layoutY="198.0" prefHeight="449.0" prefWidth="701.0" vgap="15" visible="false">
       <children>
       
       
@@ -36,30 +45,9 @@
       
               <Button fx:id="btnAdd" minWidth="80" onAction="#onAddButtonClick" text="Add" GridPane.columnIndex="2" GridPane.rowIndex="0" />
               <Button fx:id="btnReset" minWidth="80" onAction="#onResetButtonClick" text="Reset" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-      
-               <Label text="Tags" GridPane.columnIndex="0" GridPane.rowIndex="3" />
-               <Label maxWidth="130" text="Tags " GridPane.columnIndex="1" GridPane.rowIndex="3" />
-              <ChoiceBox fx:id="cbTags" prefHeight="44.0" prefWidth="185.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-      
-              <TextField fx:id="txtTag" prefWidth="305.0" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-      
-              <Button fx:id="btnAddTag" minWidth="80" onAction="#onAddTagClick" text="Add tag" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-              <Button fx:id="btnSendTag" minWidth="80" onAction="#onSendTag" text="Send" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-      
-      
-              <TableView fx:id="tblTasks" GridPane.columnIndex="0" GridPane.columnSpan="3" GridPane.rowIndex="4">
-                  <columns>
-                     <TableColumn fx:id="id" prefWidth="75.0" text="id" />
-                     <TableColumn fx:id="nameColumn" prefWidth="75.0" text="name" />
-                     <TableColumn fx:id="descriptionColumn" prefWidth="75.0" text="description" />
-                     <TableColumn fx:id="estatusColumn" prefWidth="75.0" text="estatus" />
-                     <TableColumn fx:id="dateColumn" prefWidth="75.0" text="dueDate" />
-                     <TableColumn fx:id="idTagsColumn" prefWidth="75.0" text="idTags" />
-                  </columns>
-              </TableView>
       </children>
-   
-   
+
+
          <columnConstraints>
             <ColumnConstraints />
             <ColumnConstraints maxWidth="300.0" minWidth="254.0" prefWidth="254.0" />
@@ -74,6 +62,53 @@
             <RowConstraints />
          </rowConstraints>
        </GridPane>
+      <AnchorPane fx:id="anPaneTags" layoutX="36.0" layoutY="138.0" prefHeight="512.0" prefWidth="702.0" visible="false">
+         <children>
+               <Label layoutX="318.0" layoutY="91.0" maxWidth="130" text="Tags " />
+              <ChoiceBox fx:id="cboTags" layoutX="249.0" layoutY="191.0" prefHeight="44.0" prefWidth="185.0" />
+
+              <TextField fx:id="txtTag" layoutX="143.0" layoutY="152.0" prefWidth="305.0" visible="false" />
+
+              <Button fx:id="btnAddTag" layoutX="282.0" layoutY="294.0" minWidth="80" onAction="#onAddTagClick" text="Add tag" />
+              <Button fx:id="btnSendTag" layoutX="282.0" layoutY="294.0" minWidth="80" onAction="#onSendTag" text="Send" visible="false" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="anPaneTask_Tags" layoutX="36.0" layoutY="132.0" prefHeight="512.0" prefWidth="702.0" visible="false">
+         <children>
+
+
+              <TableView fx:id="tblTasks" layoutY="105.0">
+                  <columns>
+                     <TableColumn fx:id="id" prefWidth="75.0" text="id" />
+                     <TableColumn fx:id="nameColumn" prefWidth="75.0" text="name" />
+                     <TableColumn fx:id="descriptionColumn" prefWidth="75.0" text="description" />
+                     <TableColumn fx:id="estatusColumn" prefWidth="75.0" text="estatus" />
+                     <TableColumn fx:id="dateColumn" prefWidth="75.0" text="dueDate" />
+                     <TableColumn fx:id="idTagsColumn" prefWidth="75.0" text="idTags" />
+                  </columns>
+              </TableView>
+            <HBox layoutX="351.0" layoutY="43.0" prefHeight="62.0" prefWidth="335.0">
+               <children>
+                  <Label text="Etiquetas" />
+                  <ComboBox fx:id="cboEtiqueta" minHeight="-Infinity" prefHeight="33.0" prefWidth="225.0">
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin></ComboBox>
+               </children>
+            </HBox>
+            <HBox layoutX="22.0" layoutY="43.0" prefHeight="50.0" prefWidth="306.0">
+               <children>
+                  <Label text="Tarea:" />
+                  <ComboBox fx:id="cboTarea" minHeight="-Infinity" minWidth="-Infinity" prefHeight="33.0" prefWidth="225.0">
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin></ComboBox>
+               </children>
+            </HBox>
+            <Button layoutX="499.0" layoutY="142.0" mnemonicParsing="false" onAction="#onMezclarClick" text="Agregar etiqueta" />
+         </children>
+      </AnchorPane>
+      <Button fx:id="btnRegresar" layoutX="99.0" layoutY="119.0" mnemonicParsing="false" onAction="#onRegresar" style="-fx-background-color: rgba(255,0,0,0.63);" text="Regresar" visible="false" />
    </children>
 
-</VBox>
+</AnchorPane>

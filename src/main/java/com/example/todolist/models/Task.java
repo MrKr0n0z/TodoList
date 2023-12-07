@@ -8,18 +8,16 @@ public class Task {
     private String description;
     private Boolean status;
     private Date dueDate;
-    private int idTags;
 
     public Task() {
     }
 
-    public Task(int id, String name, String description, Boolean status, Date dueDate, int idTags) {
+    public Task(int id, String name, String description, Boolean status, Date dueDate) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.status = status;
         this.dueDate = dueDate;
-        this.idTags = idTags;
     }
 
     public int getId() {
@@ -62,11 +60,4 @@ public class Task {
         this.dueDate = dueDate;
     }
 
-    public int getIdTags() {
-        return idTags;
-    }
-
-    public void setIdTags(int idTags) {
-        this.idTags = idTags;
-    }
 }

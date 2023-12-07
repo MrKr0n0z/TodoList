@@ -73,6 +73,26 @@ public class TagsDao extends MySQLConnection implements Dao<Tags> {
         return false;
     }
 
+     public Tags findByDescription(String description) {
+        String query = "SELECT * FROM tags WHERE description = ?";
+        try (Connection conn = getConnection();
+             PreparedStatement statement = conn.prepareStatement(query)) {
+
+            statement.setString(1, description);
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                Tags tag = new Tags();
+                tag.setIdTags(rs.getInt("idTags"));
+                tag.setDescription(rs.getString("description"));
+                // Otros campos de la etiqueta...
+                return tag;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null; // Manejar si no se encuentra la etiqueta
+    }
+
     @Override
     public boolean update(Tags tags) {
         String query = "update tags description=? where id = ?";
